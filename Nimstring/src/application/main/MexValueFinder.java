@@ -4,8 +4,45 @@ import java.util.Arrays;
 import java.util.Collections;
 
 
-
+/**
+ *
+ */
 public class MexValueFinder {
+	public static int getNIM(int n, int k) throws IllegalArgumentException{
+		if(n < 0 || k < 0){
+			throw new IllegalArgumentException("Both numbers should be non-negative");
+		}
+		// otherwise, continue
+		String nString = Integer.toBinaryString(n);
+		String kString = Integer.toBinaryString(k);
+		String longest = ""; String shortest = "";
+		int nStringlen = nString.length();
+		int kStringlen = kString.length();
+		if(nStringlen > kStringlen){
+			longest = nString;
+			shortest = kString;
+		}
+		else { longest = kString; shortest = nString;}
+
+		// calcuating the differece between strings
+		int difference = longest.length() - shortest.length();
+		String result = "";
+		// iterate from right to left
+		for(int i = longest.length() - 1; i >= 0; i--){
+			int tempNum = 0;
+			if(longest.length() - i <= shortest.length()){
+				tempNum += Character.getNumericValue(shortest.charAt(i - difference));
+			}
+			tempNum += Character.getNumericValue(longest.charAt(i));
+			int mod = tempNum % 2;
+			result = Integer.toString(mod) + result;
+		}
+		int solution = Integer.parseInt(result,2);
+		return solution;
+	}
+
+
+
 
 	public static void main(String[]args) {
 	
