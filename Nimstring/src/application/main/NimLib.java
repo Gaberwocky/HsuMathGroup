@@ -1,5 +1,6 @@
 package application.main;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class NimLib {
@@ -71,14 +72,16 @@ public class NimLib {
         // assuming a square array for now
         int arraySize = n + 1;
         int[][] tableArray = new int[arraySize][arraySize];
-        // Here we could init the array value to -1 like in the above method which is probably a good idea
+        // Here we init the array value to -1 like in the above method
+        // works but messes with the alignment of the matrix
+        for (int[] row: tableArray)
+            Arrays.fill(row, -1);
         // edge cases:
         // hard code in edge cases here
         tableArray[0][0] = 1;
         tableArray[0][1] = 3;
 
         // general cases
-
         // filling in the first column: hands that do not have 2-digit fingers
         for (int i = 1; i <arraySize; i++){
             if(i % 2 == 0){tableArray[i][0] = 3;}
