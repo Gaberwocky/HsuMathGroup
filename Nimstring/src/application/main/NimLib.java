@@ -2,27 +2,43 @@ package application.main;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class NimLib {
 
-    public static int getMEXValue(int[] nimValArr){
+    public static int getMEXValue(ArrayList<Integer> nimValArr) throws IllegalArgumentException{
+
 
         // will tell us how many iterations
         int nimValueLength = nimValArr.length;
 
-        int mex = -1;
-
-
-        //-1 will act as a flag if something is wrong
-
         //Will give us the highest number to check
+        //initialize to start of the array
         int nimMax = nimValArr[0];
         for ( int i = 1; i < nimValueLength ; i++ )
-        {	if (nimValArr[i] > nimMax)
-        { 	nimMax = nimValArr[i]; }
+        {	if (nimValArr[i] < 0)
+            {   throw new IllegalArgumentException("Array had mex values smaller than 0");
+                return;
+            }
+            if (nimValArr[i] > nimMax)
+            { 	nimMax = nimValArr[i]; }
         }
 
 
+
+
+        //-1 will act as a flag if something is wrong
+        int mex = -1;
+
+        //The case where we have an empty game
+        if (nimValueLength == 0)
+        {   mex = 0;
+            return mex;
+        }
+
+
+
+        //initializing boolean array
         boolean[] boolSieve = new boolean[++nimMax];
 
         //changing bool to true if that number is in the array

@@ -50,6 +50,7 @@ public class MexValueFinder {
 	int[] nimValArr = {12, 2, 14, 0 , 1 , 3, 3, 2, 3};
 	 // should have tests for having all values, 
 	//repeated values, empty array, return error
+	if (nimValArr.length == 0)
 
 	
 	// will tell us how many iterations 
