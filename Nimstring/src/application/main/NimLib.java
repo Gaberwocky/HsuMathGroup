@@ -5,6 +5,48 @@ import java.util.Scanner;
 
 public class NimLib {
 
+    public static int getMEXValue(int[] nimValArr){
+
+        // will tell us how many iterations
+        int nimValueLength = nimValArr.length;
+
+        int mex = -1;
+
+
+        //-1 will act as a flag if something is wrong
+
+        //Will give us the highest number to check
+        int nimMax = nimValArr[0];
+        for ( int i = 1; i < nimValueLength ; i++ )
+        {	if (nimValArr[i] > nimMax)
+        { 	nimMax = nimValArr[i]; }
+        }
+
+
+        boolean[] boolSieve = new boolean[++nimMax];
+
+        //changing bool to true if that number is in the array
+        for ( int i =0; i < nimValueLength; i++ )
+        {
+            int temp = nimValArr[i];
+            boolSieve [temp] = true;
+            //System.out.println("temp: " + temp + "boolSieve [temp]: " +boolSieve [temp]);
+        }
+
+        // check for first false in boolSieve
+        for ( int i =0; i<++nimMax; i++ )
+        {
+            if (boolSieve[i] == false)
+            {	mex = i;
+                break;
+            }
+            //System.out.println("index: " + i + "   bool value: " + boolSieve[i] );
+        }
+
+       // System.out.println("MEX value is: " + mex);
+        return mex;
+    }
+
     public static int[][] makeTable(){
         Scanner reader = new Scanner(System.in);
 
@@ -96,6 +138,9 @@ public class NimLib {
 
         // filling in the middle: values dependent on the initialization of the 1st row and 1st column
         // "1st" meaning the 0th index
+        for(int col = 1; col < arraySize; col++){
+
+        }
 
 
         return tableArray;
@@ -107,11 +152,18 @@ public class NimLib {
        // int[][] nimpath = makeTable();
         int[][] nimTable = makeTable2(5,5);
 
+        /*
         for (int r = 0 ; r < nimTable.length; r++)
         {	for (int c = 0; c < nimTable.length; c++ )
         {System.out.print("\t" + "[" + nimTable[r][c] + "]");	}
             System.out.println();
         }
+
+         */
+
+        int[] nimValArr = {12, 2, 14, 0 , 1 , 3, 3, 2, 3};
+        int mex = getMEXValue(nimValArr);
+        System.out.println("The mex is:  " +mex);
 
     }
     }
