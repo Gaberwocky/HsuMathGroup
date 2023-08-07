@@ -49,8 +49,10 @@ public class NimLib {
         }
 
         // check for first false in boolSieve
-        for ( int i =0; i<++nimMax; i++ )
+       nimMax++;
+        for ( int i =0; i<nimMax; i++ )
         {
+            System.out.println("in getMEX method; nimMax:  " + nimMax );
             if (boolSieve[i] == false)
             {	mex = i;
                 break;
@@ -161,17 +163,23 @@ public class NimLib {
         // filling in the middle: values dependent on the initialization of the 1st row and 1st column
         // "1st" meaning the 0th index
 
+
         for(int col = 1; col < tableArray[col].length; col++){
             for(int row = 1; row < tableArray.length; row++){
                 // add neighbors to arraylist.
                 nimbersArrayList.add(tableArray[row-1][col]);
                 nimbersArrayList.add(tableArray[row][col-1]);
                 nimbersArrayList.add(tableArray[row+1][col-1]);
-                //int[] nimbersArray = new int[nimbersArrayList.size()];
-                //int[] nims = nimbersArrayList.toArray();
-               // tableArray[row][col] = getMEXValue(nimbersArray);
+                System.out.println(nimbersArrayList.size());
+                tableArray[row][col] = getMEXValue(nimbersArrayList);
+                // clear array
+                for(int index = 4; 4 < nimbersArrayList.size(); index++){
+                    nimbersArrayList.remove(index);
+                }
             }
         }
+
+
 
 
 
@@ -180,45 +188,21 @@ public class NimLib {
 
     }
 
-    public static void test(){
-                ArrayList<String> languages= new ArrayList<>();
-
-                // Add elements in the ArrayList
-                languages.add("Java");
-                languages.add("Python");
-                languages.add("C");
-                System.out.println("ArrayList: " + languages);
-
-                // Create a new array of String type
-                // size of array is same as the ArrayList
-                String[] arr = new String[languages.size()];
-
-                // Convert ArrayList into an array
-                languages.toArray(arr);
-
-                // print all elements of the array
-                System.out.print("Array: ");
-                for(String item:arr) {
-                    System.out.print(item+", ");
-                }
-
-
-    }
 
 
     public static void main(String[] args) {
 
        // int[][] nimpath = makeTable();
-        //int[][] nimTable = makeTable2(5,5);
+        int[][] nimTable = makeTable2(5,5);
 
-    /*
+
         for (int r = 0 ; r < nimTable.length; r++)
         {	for (int c = 0; c < nimTable.length; c++ )
         {System.out.print("\t" + "[" + nimTable[r][c] + "]");	}
             System.out.println();
         }
 
-     */
+
 
 
 
@@ -234,7 +218,7 @@ public class NimLib {
         al.add(2);
         al.add(3);
         int mex = getMEXValue(al);
-        System.out.println("The mex is:  " +mex);
+       // System.out.println("The mex is:  " +mex);
 
     }
     }
