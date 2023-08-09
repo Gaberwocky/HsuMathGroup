@@ -2,7 +2,6 @@ package application.main;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class NimLib {
 
@@ -64,66 +63,7 @@ public class NimLib {
         return mex;
     }
 
-    public static int[][] makeTable(){
-        Scanner reader = new Scanner(System.in);
-
-        int n1 = -1;
-        int n2 = -1;
-        int arraySize = -1;
-
-        //input verification integer >= 0
-        //ask user to imput n1 number and n2 number
-        System.out.println("Please input n1 and n2 seperated by spaces.");
-        n1 = reader.nextInt();
-        n2 = reader.nextInt();
-
-
-        //print what they inputed in format H(n1, n2)
-
-        //initialize size of array
-        // to account for H(0,0)
-        arraySize = n1 + n2 + 1;
-
-        //array [rows][columns]
-        int[][] array = new int [arraySize][arraySize];
-
-        //initializing array to -1
-        for (int c = 0 ; c < arraySize; c++)
-        {
-            for (int r = 0; r < arraySize; r++ )
-            {	array[r][c]= -1;	}
-        }
-
-        //Filling array with nim values of size H[n1 = c][n2 = r]
-        for (int c = 0 ; c < arraySize; c++)
-        {
-
-            for (int r = 0; r < arraySize; r++ )
-            {	if ((c == 0)&(r == 0)) { array [0][0] = 1;}
-
-                //first column alternating odd n1 is 2, else 3
-                if ((c == 0)&(r % 2 == 1)) { array [r][0] = 2; }
-                if ((c == 0)&(r % 2 == 0)) { array [r][0] = 3; }
-
-
-            }
-        }
-        //check
-        System.out.println (array[1][1]);
-
-        //print the array
-        for (int r = 0 ; r < arraySize; r++)
-        {	for (int c = 0; c < arraySize; c++ )
-        {System.out.print("\t" + "[" + array[r][c] + "]");	}
-            System.out.println();
-        }
-
-        // end close the scanner
-        reader.close();
-        return array;
-    }
-
-    public static int[][] makeTable2(int n, int k) throws IllegalArgumentException{
+    public static int[][] makeTable(int n, int k) throws IllegalArgumentException{
 
         if(n < 1 || k < 1){
             throw new IllegalArgumentException("Both numbers should be greater than 1");
@@ -179,12 +119,8 @@ public class NimLib {
         return tableArray;
     }
 
-
-
     public static void main(String[] args) {
-
-       // int[][] nimpath = makeTable();
-        int[][] nimTable = makeTable2(5,5);
+        int[][] nimTable = makeTable(5,5);
 
 
         for (int r = 0 ; r < nimTable.length; r++)
@@ -194,21 +130,18 @@ public class NimLib {
         }
 
 
-
-
-
-        int[] nimValArr = {12, 2, 14, 0 , 1 , 3, 3, 2, 3};
-        ArrayList<Integer> al = new ArrayList<>();
-        al.add(12);
-        al.add(2);
-        al.add(14);
-        al.add(0);
-        al.add(1);
-        al.add(3);
-        al.add(3);
-        al.add(2);
-        al.add(3);
-        int mex = getMEXValue(al);
+       // int[] nimValArr = {12, 2, 14, 0 , 1 , 3, 3, 2, 3};
+       // ArrayList<Integer> al = new ArrayList<>();
+       // al.add(12);
+       // al.add(2);
+       // al.add(14);
+       // al.add(0);
+       // al.add(1);
+       // al.add(3);
+       // al.add(3);
+       // al.add(2);
+       // al.add(3);
+       // int mex = getMEXValue(al);
        // System.out.println("The mex is:  " +mex);
 
     }
