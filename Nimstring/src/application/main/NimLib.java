@@ -128,9 +128,13 @@ public class NimLib {
         if(n < 1 || k < 1){
             throw new IllegalArgumentException("Both numbers should be greater than 1");
         }
-        // assuming a square array for now
-        // Need: array size of n + k + 1
-        //int arraySize = n + 1;
+
+        // for mex values
+        ArrayList<Integer> nimbersArrayList = new ArrayList<>();
+        // adding values that we have assumed we always be present:
+        for(int num = 0; num < 4; num++){
+            nimbersArrayList.add(num);
+        }
         int arraySize = n + k + 1;
         int[][] tableArray = new int[arraySize][arraySize];
         // Here we init the array value to -1 like in the above method
@@ -141,11 +145,6 @@ public class NimLib {
         // hard code in edge cases here
         tableArray[0][0] = 1;
         tableArray[0][1] = 3;
-
-        // for mex values
-        ArrayList<Integer> nimbersArrayList = new ArrayList<>();
-        // adding values that we have assumed we always be present:
-        nimbersArrayList.add(0); nimbersArrayList.add(1); nimbersArrayList.add(2); nimbersArrayList.add(3);
 
         // general cases
         // filling in the first column: hands that do not have 2-digit fingers
@@ -163,7 +162,6 @@ public class NimLib {
         // filling in the middle: values dependent on the initialization of the 1st row and 1st column
         // "1st" meaning the 0th index
 
-
         for(int col = 1; col < tableArray[col].length; col++){
             for(int row = 1; row < tableArray.length; row++){
                 // add neighbors to arraylist.
@@ -172,20 +170,13 @@ public class NimLib {
                 nimbersArrayList.add(tableArray[row+1][col-1]);
                 System.out.println(nimbersArrayList.size());
                 tableArray[row][col] = getMEXValue(nimbersArrayList);
-                // clear array
+                // clear array of neighbors
                 for(int index = 4; 4 < nimbersArrayList.size(); index++){
                     nimbersArrayList.remove(index);
                 }
             }
         }
-
-
-
-
-
-
         return tableArray;
-
     }
 
 
