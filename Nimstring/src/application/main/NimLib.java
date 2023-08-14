@@ -42,7 +42,7 @@ public class NimLib {
 
         //initializing boolean array
         // create a boolean array with indexes up to the max nimber found in the passed in array
-        boolean[] boolSieve = new boolean[++nimMax];
+        boolean[] boolSieve = new boolean[nimMax + 2];
 
         //changing bool to true if that number is in the array
        // iterate up to the length of the nimbers array
@@ -129,7 +129,7 @@ public class NimLib {
                 nimbersArrayList.add(tableArray[row+1][col-1]);
                 System.out.println("size of nimbers arraylist"+nimbersArrayList.size());
                 tableArray[row][col] = getMEXValue(nimbersArrayList);
-                System.out.println("Mex value at : " + row + ", " + col + "is " + tableArray[row][col] );
+                System.out.println("Mex value at : " + row + "," + col + " is " + tableArray[row][col] );
                 // clear array of neighbors
                // clearNeighbors(nimbersArrayList);
 
