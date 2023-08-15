@@ -29,8 +29,6 @@ public class NimLib {
             { 	nimMax = nimValArr.get(i); }
         }
 
-
-
         //-1 will act as a flag if something is wrong
         int mex = -1;
 
@@ -120,10 +118,10 @@ public class NimLib {
         // filling in the middle: values dependent on the initialization of the 1st row and 1st column
         // "1st" meaning the 0th index
 
-        for(int col = 1; col < tableArray[col].length; col++){
-            for(int row = 1; row < tableArray.length; row++){
+        for(int col = 1; col < tableArray[col].length - 1; col++){
+            int rowLength = tableArray.length - col;
+            for(int row = 1; row < rowLength; row++){
                 // add neighbors to arraylist.
-                // should be 4
                 nimbersArrayList.add(tableArray[row-1][col]);
                 nimbersArrayList.add(tableArray[row][col-1]);
                 nimbersArrayList.add(tableArray[row+1][col-1]);
@@ -131,7 +129,8 @@ public class NimLib {
                 tableArray[row][col] = getMEXValue(nimbersArrayList);
                 System.out.println("Mex value at : " + row + "," + col + " is " + tableArray[row][col] );
                 // clear array of neighbors
-               // clearNeighbors(nimbersArrayList);
+                //clearNeighbors(nimbersArrayList);
+                nimbersArrayList.subList(4, nimbersArrayList.size()).clear();
 
             }
         }
@@ -139,10 +138,17 @@ public class NimLib {
     }
 
     public static void clearNeighbors(ArrayList<Integer> list){
-        for(int index = 4; 4 <= list.size(); index++){
+        for(int index = 4; 4 < list.size(); index++){
             list.remove(index);
         }
+    }
 
+    public static void printTable(int[][] nimTable){
+        for (int r = 0 ; r < nimTable.length; r++)
+        {	for (int c = 0; c < nimTable.length; c++ )
+        {System.out.print("\t" + "[" + nimTable[r][c] + "]");	}
+            System.out.println();
+        }
     }
 
     public static void getListContents(ArrayList<Integer> nimbersList){
@@ -150,14 +156,8 @@ public class NimLib {
     }
 
     public static void main(String[] args) {
-        int[][] nimTable = makeTable(5,5);
-
-
-        for (int r = 0 ; r < nimTable.length; r++)
-        {	for (int c = 0; c < nimTable.length; c++ )
-        {System.out.print("\t" + "[" + nimTable[r][c] + "]");	}
-            System.out.println();
-        }
+        int[][] nimTable = makeTable(4,4);
+        printTable(nimTable);
 
 
     }
