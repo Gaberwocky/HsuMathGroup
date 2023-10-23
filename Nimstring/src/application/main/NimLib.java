@@ -5,6 +5,39 @@ import java.util.Arrays;
 
 public class NimLib {
 
+    public static int getNIM(int n, int k) throws IllegalArgumentException{
+        if(n < 0 || k < 0){
+            throw new IllegalArgumentException("Both numbers should be non-negative");
+        }
+        // otherwise, continue
+        String nString = Integer.toBinaryString(n);
+        String kString = Integer.toBinaryString(k);
+        String longest = ""; String shortest = "";
+        int nStringlen = nString.length();
+        int kStringlen = kString.length();
+        if(nStringlen > kStringlen){
+            longest = nString;
+            shortest = kString;
+        }
+        else { longest = kString; shortest = nString;}
+
+        // calcuating the differece between strings
+        int difference = longest.length() - shortest.length();
+        String result = "";
+        // iterate from right to left
+        for(int i = longest.length() - 1; i >= 0; i--){
+            int tempNum = 0;
+            if(longest.length() - i <= shortest.length()){
+                tempNum += Character.getNumericValue(shortest.charAt(i - difference));
+            }
+            tempNum += Character.getNumericValue(longest.charAt(i));
+            int mod = tempNum % 2;
+            result = Integer.toString(mod) + result;
+        }
+        int solution = Integer.parseInt(result,2);
+        return solution;
+    }
+
     /**
      * Returns the minimum excluded value given a list of nimbers
      * @param nimValArr
@@ -86,7 +119,7 @@ public class NimLib {
         // for mex values
         ArrayList<Integer> nimbersArrayList = new ArrayList<>();
         // adding values that we have assumed we always be present:
-        // we'll always assume we can get the nimbers: 0,1,2 and 3 by removing the palm
+        // we'll always assume we can get the nimbers: 0,1,2 and 3 by moves that include removing the palm
         for(int num = 0; num < 4; num++){
             nimbersArrayList.add(num);
             System.out.println("adding: " + num);
@@ -156,8 +189,15 @@ public class NimLib {
     }
 
     public static void main(String[] args) {
-        int[][] nimTable = makeTable(4,4);
-        printTable(nimTable);
+        //int[][] nimTable = makeTable(6,6);
+        //printTable(nimTable);
+
+        int val = getNIM(1,0);
+        System.out.println(val);
+
+
+
+
 
 
     }
