@@ -125,6 +125,22 @@ public class Hand {
         return tableArray;
     } // end of handarray method
 
+
+
+
+    public static void printTable(Hand[][] nimTable){
+        for (int r = 0 ; r < nimTable.length; r++)
+        {	for (int c = 0; c < nimTable.length; c++ )
+        {System.out.print("\t" + "[" + nimTable[r][c].nimValue + "]");	}
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        Hand[][] nimTable = make2dTable(4,4);
+        printTable(nimTable);
+    }
+
 }
 
 
