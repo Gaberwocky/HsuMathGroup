@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Set;
 
 public class Hand {
-    int nimValue; // the mex Value from the nextMovesSet
+
+    int nimValue; // the mex Value from the nextMovesSet by passing
+    // nim value subpositions into getMEX
     //Set<Integer> nextMovesSet;
     ArrayList<Integer> nextMovesSet = new ArrayList<>();
     ArrayList<Hand> subPositions = new ArrayList<>();
@@ -38,6 +40,7 @@ public class Hand {
 
     // H(n1,n2,k) where the value of k indicates the
     // presence of a floater- non connected finger
+    /*
     public ArrayList<Hand> getSubPositions() {
         ArrayList<Hand> subpositionsList = new ArrayList<>();
         if (n1 > 0) {
@@ -56,6 +59,8 @@ public class Hand {
 
         return subpositionsList;
     }
+
+     */
 
 
     /**
@@ -100,17 +105,20 @@ public class Hand {
                     // n+1, n2-1, 0
                     current.subPositions.add(tableArray[n1+1][n2-1]);
                     // n, n2-1, 1(1 floater)
-                    Hand tempHand = new Hand(tableArray[n1][n2-1].n1,tableArray[n1][n2-1].n2,1);
-                    current.subPositions.add(tempHand);
+                   Hand tempHand = new Hand(tableArray[n1][n2-1].n1,tableArray[n1][n2-1].n2,0);
+                   // find nimValue of tempHand
+                   // pass temPhand's nimvalue and 1 to getNim()
+                    //current.subPositions.add(tempHand);
                 }
                 //if the palm is affected:
+                // Gabi proved that nim vals 0,1,2,3 always included
 
                 // then pass subPositions to getMex
 
                 for(Hand hand : current.subPositions){
                     current.nextMovesSet.add(hand.nimValue);
                 }
-                //current.nimValue = getMEXValue(current.nextMovesSet);
+                current.nimValue = NimLib.getMEXValue(current.nextMovesSet);
 
             }
         }

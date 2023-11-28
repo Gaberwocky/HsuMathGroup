@@ -18,7 +18,7 @@ public class NimTable {
         int arraySize = n1 + n2 + 1;
         Hand[][] tableArray = new Hand[arraySize][arraySize];
         Hand defaultHand = new Hand();
-        defaultHand.makeDefaultHand();
+       // defaultHand.makeDefaultHand();
         tableArray[0][0] = defaultHand;
 
         // starting iterations:

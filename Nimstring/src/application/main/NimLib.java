@@ -189,11 +189,11 @@ public class NimLib {
     }
 
     public static void main(String[] args) {
-        //int[][] nimTable = makeTable(6,6);
-        //printTable(nimTable);
+        int[][] nimTable = makeTable(6,6);
+        printTable(nimTable);
 
         int val = getNIM(1,0);
-        System.out.println(val);
+       // System.out.println(val);
 
 
 
