@@ -45,6 +45,8 @@ public class NimLib {
      * @throws IllegalArgumentException
      */
    public static int getMEXValue(ArrayList<Integer> nimValArr) throws IllegalArgumentException{
+       nimValArr.add(0);
+       nimValArr.add(1);
 
         // will tell us how many iterations
         int nimValueLength = nimValArr.size();
